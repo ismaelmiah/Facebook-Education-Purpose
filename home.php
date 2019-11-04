@@ -1,5 +1,6 @@
 <?php 
-	include('database.php');
+	session_start();
+	include('include/database.php');
  ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,13 @@
 							<img src="image/profile.jpg">
 						</div>
 						<div class="proname">
-							<a href="">Profile</a>
+							<a href="">
+								
+								<?php 
+									echo $_SESSION["fName"];
+								 ?>
+
+							</a>
 						</div>
 					</li>
 					<li><a href="">Home</a></li>
@@ -239,7 +246,7 @@
 					</div>
 				</form>
 				<?php
-					$sql="SELECT * FROM post";
+					$sql="SELECT * FROM post ORDER BY post_id DESC";
 					$record=$conn->query($sql);
 					while($data = $record->fetch_assoc()){
 				 ?>

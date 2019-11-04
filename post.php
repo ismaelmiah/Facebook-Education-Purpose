@@ -1,5 +1,5 @@
 <?php 
-include('database.php');
+include('include/database.php');
 
 	if(isset($_POST['postbtn'])){
 
@@ -9,11 +9,8 @@ include('database.php');
 		VALUES ('$postmessage', '$date')";
 
 		if ($conn->query($sql) === TRUE) {
-		    echo "New record created successfully";
-		} else {
-		    echo "Error: " . $sql . "<br>" . $conn->error;
+		    header('location: home.php');
 		}
-
 		$conn->close();
 	}
 
