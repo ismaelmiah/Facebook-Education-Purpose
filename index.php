@@ -5,17 +5,16 @@
 	session_start();
 	include('include/database.php');
  ?>
-
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="30">
+
 	<title>Facebook -log in or sign up</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
 	<link rel="shortcut icon" href="image/facebook.ico" type="image/x-icon"/>
 </head>
 <body>
 
-  <script type="text/javascript" src="js/registrationformValidation.js"> </script>
+  <script type="text/javascript" src="js/registrationformValidation.js"></script>
 </head>
 <?php
 	if (isset($_POST['btnlogin'])){		
@@ -94,12 +93,12 @@
 		<div class="right">
 			<h1>Create an account</h1>
 			<p><span>It's quick and easy</span></p>
-			<form action="registration_basic.php" method="POST" OnSubmit="return checkRegistration();">
+			<form name="register" action="registration_basic.php" onsubmit="return checkRegistration();" method="POST" >
 				<div class="first-name">
-					<input type="text" name="fname" placeholder="First Name" />
+					<input type="text" name="fName" placeholder="First Name" />
 				</div>
 				<div class="sur-name">
-					<input type="text" name="sname" placeholder="Surname" />
+					<input type="text" name="lName" placeholder="Surname" />
 				</div>
 				<div class="mobile">
 					<input type="email" name="email" placeholder="Mobile number or email address" />
@@ -109,17 +108,16 @@
 				</div>
 				<div class="birthday">
 					<h2>Birthday</h2>
-					<select name="day" id="" class="day">
+					<select name="day" id="day" class="day">
 						<option value="Day">Day</option>
 						<?php 
-
                            $d = range(31, 1);
 							foreach ($d as $day) {
 								echo '<option value='.$day.'>'.$day.'</option>';
 							}
 						 ?>
 					</select>
-					<select name="month" id=""class="month">
+					<select name="month" id="month" class="month">
 						<option value="Month">Month</option>
 						 <?php 
                            $m = array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
@@ -128,7 +126,7 @@
                             }
                          ?>
 					</select>
-					<select name="year" id=""class="year">
+					<select name="year" id="year" class="year">
 						<option value="Year">Year</option>
 
 						 <?php 

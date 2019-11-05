@@ -34,7 +34,7 @@
 							<a href="">
 								
 								<?php 
-									echo $_SESSION["fName"];
+									echo $_SESSION['fName'];
 								 ?>
 
 							</a>
@@ -67,13 +67,19 @@
 					<img src="image/profile.jpg">
 				</div>
 				<div class="proname">
-					<a style="color: black;" href="">Profile Full Name</a>
+					<a style="color: black;" href="">
+						<?php 
+							echo $_SESSION['fName']." ".$_SESSION['lName'];
+						 ?>
+					</a>
 				</div>
 			  </li>
 
 			  <li class="huber" style="margin-top: 10px; ">
 			  	<div class="fontawsome">
-			  		<i class="far fa-newspaper fa-3x fa-messenger"></i>
+			  		<i style="font-size: 16px;
+    margin-top: 3px;
+    margin-left: 6px;" class="far fa-newspaper fa-3x fa-messenger"></i>
 			  	</div>
 				<div class="fonttext">
 					<a style="color: black;font-weight: 600" href="">News Feed</a>
@@ -81,7 +87,9 @@
 			  </li>
 			  <li class="huber">
 			  	<div class="fontawsome">
-			  		<i class="fab fa-facebook-messenger fa-3x fa-messenger"></i>
+			  		<i  style="font-size: 16px;
+    margin-top: 3px;
+    margin-left: 6px;" class="fab fa-facebook-messenger fa-3x fa-messenger"></i>
 			  	</div>
 				<div class="fonttext">
 					<a style="color: black;" href="">Messenger</a>
@@ -89,7 +97,9 @@
 			  </li>
 			  <li class="huber">
 			  	<div class="fontawsome">
-			  		<i class="fa fa-tv fa-3x fa-messenger"></i>
+			  		<i  style="font-size: 16px;
+    margin-top: 3px;
+    margin-left: 6px;" class="fa fa-tv fa-3x fa-messenger"></i>
 			  	</div>
 				<div class="fonttext">
 					<a style="color: black;" href="">Watch</a>

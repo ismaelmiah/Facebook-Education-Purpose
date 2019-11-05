@@ -1,33 +1,28 @@
 
-function checkRegistration(){
+  	function checkRegistration(){
 	var f_name = document.forms["register"]["fName"].value; 
  	var l_name = document.forms["register"]["lName"].value;
 	var email  = document.forms["register"]["email"].value;
-	var reemail = document.forms["register"]["reemail"].value;
 	var password = document.forms["register"]["password"].value;
-	   if (f_name == '' || l_name == '' || email == '' || reemail == '' || password == ''){
+	   if (f_name === '' || l_name === '' || email === '' || password === ''){
 			alert("You must fill in all of the fields.");
-			window.location = "index.php";
 			return false;
 		}
-
 		var x = document.getElementById("month").selectedIndex;
-		//get the specific value based on the selectedIndex
 		var choice = document.getElementsByTagName("option")[x].value;
-
-		//get the selected value for Day
 		var y = document.getElementById("day").selectedIndex;
 		var choice1 = document.getElementsByTagName("option")[y].value;
-
-		//get the selected value for Year
-		var z = document.getElementById("yr").selectedIndex;
+		var z = document.getElementById("year").selectedIndex;
 		var choice2 = document.getElementsByTagName("option")[z].value;
 
-		//check if the selected value is empty then it will return the function to false	
-		if (choice == "" || choice1 == "" || choice2 == ""){
+		var gender = document.querySelectorAll('input[name="gender"]:checked');
+
+		if (choice==="Month" || choice1==="Day" || choice2 === "Year" || gender.length==0)
+		{
 		 alert("You must indicate your full birthday to register.");
 		 return false;
 		}
+		return true;
 	}
 
 
