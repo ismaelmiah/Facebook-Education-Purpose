@@ -31,7 +31,7 @@ else{
 if ($conn->query($sql)) {
     
     echo "<script type=\"text/javascript\">
-                alert(\"Welcome To Facebook.\");
+                alert(\"$f_name $l_name your account created Successfully.\");
                 window.location = \"index.php\"
             </script>";
     

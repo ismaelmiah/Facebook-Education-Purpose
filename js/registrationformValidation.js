@@ -1,14 +1,14 @@
 
 	function checkRegistration(){
-var f_name = document.forms["register"]["fName"].value; 
-	var l_name = document.forms["register"]["lName"].value;
+var f_name = document.forms["register"]["fname"].value; 
+	var l_name = document.forms["register"]["sname"].value;
 var email  = document.forms["register"]["email"].value;
 var password = document.forms["register"]["password"].value;
    if (f_name === '' || l_name === '' || email === '' || password === ''){
 		alert("You must fill in all of the fields.");
 		return false;
 	}
-	if(password.length < 6) {
+	else if(password.length < 6) {
         alert("Error: Password must contain at least six characters!");
         return false;
      }
@@ -32,11 +32,16 @@ var password = document.forms["register"]["password"].value;
 
 	var gender = document.querySelectorAll('input[name="gender"]:checked');
 
-	if (choice==="Month" || choice1==="Day" || choice2 === "Year" || gender.length==0)
+	if (choice==="Month" || choice1==="Day" || choice2 === "Year")
 	{
 	 alert("You must indicate your full birthday to register.");
 	 return false;
 	}
+	if(gender.length==0){
+	 alert("You must indicate your gender to register.");
+	 return false;
+	}
+	return true;
 }
 
 

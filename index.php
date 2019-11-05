@@ -8,14 +8,12 @@
  ?>
 <head>
 	<meta charset="UTF-8">
-
 	<title>Facebook -log in or sign up</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
 	<link rel="shortcut icon" href="image/facebook.ico" type="image/x-icon"/>
 </head>
 <body>
-
-  <script type="text/javascript" src="js/registrationformValidation.js"></script>
+<script src="js/registrationformValidation.js"></script>
 </head>
 	<header class="header-area">
 		<div class="container">	
@@ -50,7 +48,7 @@
 		<div class="right">
 			<h1>Create an account</h1>
 			<p><span>It's quick and easy</span></p>
-			<form name="register" onsubmit="return checkRegistration();" method="POST"action="registration_basic.php" >
+			<form name="register" onsubmit="return checkRegistration();" method="POST" action="registration_basic.php">
 				<div class="first-name">
 					<input type="text" name="fname" placeholder="First Name" />
 				</div>
