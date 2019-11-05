@@ -1,6 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-
+<?php 
+	session_start();
+	if(isset($_SESSION['fName'])){
+		header('location:home.php');
+	}
+ ?>
 <head>
 	<meta charset="UTF-8">
 

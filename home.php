@@ -1,7 +1,13 @@
 <?php 
 	session_start();
 	include('include/database.php');
- ?>
+
+	if(isset($_GET['logout'])){
+		session_unset();
+		header('location: index.php');
+	}
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="css/homestyle.css">
 	<script src="https://kit.fontawesome.com/7d6d41d97c.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="js/functions.js"></script>
 </head>
 <body>
 
@@ -51,12 +58,27 @@
 					<li><i class="fab fa-facebook-messenger fa-3x"></i></li>
 					<li><i class="fas fa-bell fa-3x"></i></li>
 					<li><i class="fas fa-question-circle fa-3x"></i></li>
-					<li><i class="fas fa-caret-down fa-3x"></i></li>
+					<li><i onclick="allsettings()" class=" dropbtn fas fa-caret-down fa-3x"></i></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	
+	<div class="dropdown">
+	  <div id="myDropdown" class="dropdown-content">
+	    <a href="#home">Manage Groups</a>
+	    <hr>
+	    <a href="#about">Advertising on Facebook</a>
+	    <hr>
+	    <a href="#contact">Activity Log</a>
+	    <a href="#contact">News Feed preferences</a>
+	    <a href="#contact">Settings</a>
+	    <hr>
+	    <a href ="home.php?logout=true">Logout</a>
+	  </div>
+	</div>
 </div>
+				
 
 <div class="bodylist">
 	<div class="middlescale">
@@ -589,5 +611,24 @@
 		</div>
 	</div>
 </div>
+
+<script>
+function allsettings() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
 </body>
 </html>

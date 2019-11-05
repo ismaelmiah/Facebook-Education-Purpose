@@ -1,9 +1,39 @@
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  margin-left: 900px;
+  margin-top: 1px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content hr{
+	border: none;
+	margin:0px;
+	padding:0px;
+	border-bottom: 1px solid #E9EBEE; 
+}
+.dropdown-content a {
+  color: black;
+  padding: 5px 16px;
+  font-size: 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color:  #4267B2;
+  color: white;
+}
+
+.show {display: block;}
+
 body{
 	margin: 0;
 	padding: 0;
 	font-family:Roboto, Helvetica, Arial, sans-serif;
 	font-size: 13px;
-
 	background-color: #E9EBEE;
 }
 .scale{
@@ -18,10 +48,6 @@ body{
 	position: fixed;
 }
 
-.navbar a{
-	text-decoration: none;
-	color: white;
-}
 .left{
 	width: 45%;
 	float: left;
@@ -36,6 +62,9 @@ body{
 	color: white;
 	font-size: 0.5rem;
 	float: left;
+}
+.logo a{
+	color: white;
 }
 .fa-facebook-square{
 	margin-top: 5px;
@@ -57,6 +86,11 @@ body{
 	color: white;
 	margin-top: -5px;
 	margin-left: 10px;
+}
+
+.navmenu a{
+	color: white;
+	text-decoration: none;
 }
 
 .navmenu ul, li{
@@ -315,7 +349,7 @@ body{
 
 .profilestatus li span{
 	font-size: 40px;
-	margin-left: 33px;
+	margin-left: 25px;
 	color: #4ABA34;
 }
 .profilestatus{
