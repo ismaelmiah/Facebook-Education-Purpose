@@ -1,10 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 
-<?php 
-	session_start();
-	include('include/database.php');
- ?>
 <head>
 	<meta charset="UTF-8">
 
@@ -16,57 +12,13 @@
 
   <script type="text/javascript" src="js/registrationformValidation.js"></script>
 </head>
-<?php
-	if (isset($_POST['btnlogin'])){		
-		$email	= trim($_POST['log_email']);
-		$upass	= trim($_POST['log_pword']);
-		$h_upass = sha1($upass);
-		if($email == ''){	
-			echo 'Username or Password Not Registered! Contact Your administrator...';
-		}elseif($upass == ''){	
-			echo 'Username or Password Not Registered! Contact Your administrator...';
-		
-		}else{
-			$sql = "SELECT * FROM `user_info` WHERE `email`='". $email ."' and `pword`='". $h_upass ."'";
-			$result = $conn->query($sql);
-			$numrows = $result->num_rows;
-			if ($numrows == 1){
-				$found_user = $result->fetch_assoc();
-				$_SESSION['user_id'] = $found_user['user_id'];
-				$_SESSION['fName'] = $found_user['fName'];
-				$_SESSION['lName'] = $found_user['lName'];
-				$_SESSION['email'] = $found_user['email'];
-				$_SESSION['pword'] = $found_user['pword'];
-				$_SESSION['gender'] = $found_user['gender'];
-				
-		?>	<script type="text/javascript">
-				//alert("Welcome! <?php echo $_SESSION['fName'];?> your are successfully logged in.");
-				window.location = "home.php";
-			</script>
-		<?php
-				
-			}else{
-			?>	<script type="text/javascript">
-				alert("Username or Password Not Registered! Contact Your administrator.");
-				window.location = "index.php";
-				</script>
-		<?php
-			}
-		}	
-	}else{		
-		$email	= "";
-		$upass	= "";
-		$utype	= "";
-	}
-?>
-
 	<header class="header-area">
 		<div class="container">	
 			<div class="logo-area">
 				<a href="#"><img src="image/facebook.png" alt="facebook" /></a>
 			</div>
 			<div class="login-area">
-				<form action="index.php" method="POST">
+				<form name="login" action="login.php" method="POST" onsubmit="return loginformvalidation();">
 					<div class="username-area">
 						<label for="user">Email or Phone</label>
 						<input type="text" id="user" name="log_email" />
@@ -93,12 +45,12 @@
 		<div class="right">
 			<h1>Create an account</h1>
 			<p><span>It's quick and easy</span></p>
-			<form name="register" action="registration_basic.php" onsubmit="return checkRegistration();" method="POST" >
+			<form name="register" onsubmit="return checkRegistration();" method="POST"action="registration_basic.php" >
 				<div class="first-name">
-					<input type="text" name="fName" placeholder="First Name" />
+					<input type="text" name="fname" placeholder="First Name" />
 				</div>
 				<div class="sur-name">
-					<input type="text" name="lName" placeholder="Surname" />
+					<input type="text" name="sname" placeholder="Surname" />
 				</div>
 				<div class="mobile">
 					<input type="email" name="email" placeholder="Mobile number or email address" />

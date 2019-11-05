@@ -75,7 +75,7 @@
 				</div>
 			  </li>
 
-			  <li class="huber" style="margin-top: 10px; ">
+			  <li class="huber" style="margin-top: 15px; ">
 			  	<div class="fontawsome">
 			  		<i style="font-size: 16px;
     margin-top: 3px;
@@ -268,7 +268,9 @@
 											<img src="image/profile.jpg">
 										</div>
 										<div class="usrname">
-											<h1>Rana Islam</h1>
+											<h1>
+												<?php echo $_SESSION['fName']." ".$_SESSION['lName'] ?>
+											</h1>
 											<a href="#"><?php echo "".$data['post_date'];?></a>
 										</div>
 									</div>

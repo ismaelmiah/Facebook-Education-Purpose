@@ -1,30 +1,54 @@
 
-  	function checkRegistration(){
-	var f_name = document.forms["register"]["fName"].value; 
- 	var l_name = document.forms["register"]["lName"].value;
-	var email  = document.forms["register"]["email"].value;
-	var password = document.forms["register"]["password"].value;
-	   if (f_name === '' || l_name === '' || email === '' || password === ''){
-			alert("You must fill in all of the fields.");
-			return false;
-		}
-		var x = document.getElementById("month").selectedIndex;
-		var choice = document.getElementsByTagName("option")[x].value;
-		var y = document.getElementById("day").selectedIndex;
-		var choice1 = document.getElementsByTagName("option")[y].value;
-		var z = document.getElementById("year").selectedIndex;
-		var choice2 = document.getElementsByTagName("option")[z].value;
-
-		var gender = document.querySelectorAll('input[name="gender"]:checked');
-
-		if (choice==="Month" || choice1==="Day" || choice2 === "Year" || gender.length==0)
-		{
-		 alert("You must indicate your full birthday to register.");
-		 return false;
-		}
-		return true;
+	function checkRegistration(){
+var f_name = document.forms["register"]["fName"].value; 
+	var l_name = document.forms["register"]["lName"].value;
+var email  = document.forms["register"]["email"].value;
+var password = document.forms["register"]["password"].value;
+   if (f_name === '' || l_name === '' || email === '' || password === ''){
+		alert("You must fill in all of the fields.");
+		return false;
 	}
+	if(password.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        return false;
+     }
+      re = /[0-9]/;
+      if(!re.test(password)) {
+        alert("Error: password must contain at least one number (0-9)!");
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(password)) {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        return false;
+      }
 
+	var x = document.getElementById("month").selectedIndex;
+	var choice = document.getElementsByTagName("option")[x].value;
+	var y = document.getElementById("day").selectedIndex;
+	var choice1 = document.getElementsByTagName("option")[y].value;
+	var z = document.getElementById("year").selectedIndex;
+	var choice2 = document.getElementsByTagName("option")[z].value;
+
+	var gender = document.querySelectorAll('input[name="gender"]:checked');
+
+	if (choice==="Month" || choice1==="Day" || choice2 === "Year" || gender.length==0)
+	{
+	 alert("You must indicate your full birthday to register.");
+	 return false;
+	}
+}
+
+
+function loginformvalidation(){
+var log_email = document.forms["login"]["log_email"].value; 
+var log_pword = document.forms["login"]["log_pword"].value; 
+	if (log_email === '' || log_pword === ''){
+		alert("You must fill login fields.");
+		return false;
+	}
+	return true;
+}
 
 function checkEmail(){
 /*	//get value of email address inputted by the user
