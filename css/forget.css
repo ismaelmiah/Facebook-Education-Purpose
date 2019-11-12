@@ -100,155 +100,153 @@ body {
 }
 .main-area{
 	width:100%;
-	height:650px;
+	height:370px;
 	background:linear-gradient(#FFFFFF,#D4D9E9);
 	
 }
-.right h1,
-.right p span{
-	margin-left:125px;
-	
+.allfbox{
+	margin: 110px 400px;
+	border: 1px solid #CCCCCC;
+	border-radius:3px;
+	background-color: white;
 }
-.right h1{
-	color:#333333;
+.searchforget{
+	padding: 15px 75px;
 }
-.right p span{
-	color:#1D2735;
-	font-size:18px;
-	
+.searchforget input{
+	width: 260px;
+	margin:5px 0px 10px 0px;
 }
-.main-area .left{
-	float:left;
-	width:50%;
-	height:500px;
-	padding-top:4%;
-	
+.forgetbox hr{
+	border: none;
+	border-bottom: 1px solid #CCCCCC;
+	padding:0px;
+	margin-bottom: 0px;
+	width: 90%;
 }
-.left h3{
-	color:#0E385F;
-	padding-left:22%;
-	margin:0;
-	font-size:22px;
+.forgetbox h1{
+	padding: 0px;
+	margin: 0px;
 }
-.left img{
-	padding-left:24%;
+.searchforget p{
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
 }
-.main-area .right{
-	overflow:hidden;
-	width:50%;
-	
-	height:700px;
+.forgetbox h1{
+	font-size: 15px;
+	padding:14px 20px 10px 20px;
 }
 
-.right form{
-	margin-left:125px;
+.btnfsearch{
+	text-align: right;
+	background-color: #F2F2F2;
+	padding: 10px 10px;
+	border:none;
+	border-top: 1px solid #CCC;
 }
-.first-name input{
-	width:30%;
-	padding:10px 10px;
-	border:1px solid #BDC7D8;
-	border-radius:5px;
-	float:left;
-	margin-right:10px;
-	margin-bottom:13px;
-	
-}
-.sur-name input{
-	width:30%;
-	padding:10px 10px;
-	border:1px solid #BDC7D8;
-	border-radius:5px;
-	margin-bottom:13px;
-	overflow:hidden;
-}
-.right input::placeholder{
-	font-size:18px;
-}
-.mobile input{
-	width:66%;
-	padding:10px 10px;
-	border:1px solid #BDC7D8;
-	border-radius:5px;
-	margin-right:10px;
-	margin-bottom:13px;
-	
-}
-.birthday h2{
-	margin:0;
-	padding:5px 0;
-	color:#90949C;
-	font-size:18px;
-}
-.day{
-	float:left;
-	border:1px solid #BDC7D8;
-	padding:5px 5px;
-	margin:5px 0;
-}
-.month{
-	float:left;
-	border:1px solid #BDC7D8;
-	padding:5px 5px;
-	margin:5px 0;
-}
-.year{
-	border:1px solid #BDC7D8;
-	padding:5px 5px;
-	margin:5px 0;
-}
-.gender h2{
-	margin:0;
-	padding:5px 0;
-	margin:5px 0;
-	font-size:18px;
-	color:#90949C;
-}
-.gender label{
-	margin:0 3px;
-}
-.gender p{
-	font-size:11px;
-	width:50%;
-	padding:10px 0;
-	color:#777777;
 
+.btnfsearch button{
+	padding: 5px;
+	border:1px solid #CCC;
 }
-.gender p a{
-	text-decoration:none;
-	color:#3E5C9A;
+.btnfsearch button:hover{
+	cursor: pointer;
 }
-.gender p a:hover{
-	text-decoration:underline;
+.btnfsearch button:nth-child(1){
+	background-color: #4267B2;
+	color: white;
 }
-.sign-up input{
-	padding:10px 80px;
-	border:1px solid green;
-	border-radius:5px;
-	background:#62994E;
-	color:white;
+.btnfsearch button:nth-child(1):hover{
+	background-color: #3B5998;
+	color: white;
+}
+.btnfsearch button:nth-child(2){
+	background-color: #FFF;
+}
+.btnfsearch button:nth-child(2):hover{
+	background-color: #CCC;
+}
+
+.fprofile{
+	padding: 10px;
+	float: left;
+}
+
+.fprofile p,span,a{
+	padding: 0px;
+	margin: 0px;
+	color: gray;
+}
+
+.fprofile p{
+	color: black;
+}
+.fprofile span{
+	font-size: 13px;
+	display: block;
+}
+.fprofile a{
+	font-size: 13px;
+	color: black;
+	padding-top: 20px;
+	text-decoration: none;
+}
+.fprofile a:hover{
+	text-decoration: underline;
+}
+
+.passwrd{
+	padding: 20px 0px;
+}
+
+.passwrd h2{
+	padding: 10px;
+	margin: 0px;
+	float: left;
+	font-size: 14px;
+	text-align: center;
+}
+
+.passwrd input{
+	padding: 2px;
+	margin: 8px 30px;
+	width: 38%;
+}
+
+.passwrd input:nth-child(4){
+	padding: 2px;
+	margin: 8px 6px;
+}
+
+.btnfsave{
+	padding: 10px;
+	text-align: right;
+}
+.btnfsave button{
+	padding: 5px 10px;
+	margin: 5px;
+	border:none;
+	outline: none;
+}
+.btnfsave button:hover{
 	cursor:pointer;
-	font-size:20px;
-	margin-bottom:20px;
-}
-.sign-up input:hover{
-	background:#5B8D47;
-}
-.sign-up h4{
-	color:#666666;
-	
-}
-.sign-up h4 a{
-	text-decoration:none;
-	color:#3E5C9A;
-}
-.sign-up h4 a:hover{
-	text-decoration:underline;
-}
-.container hr{
-	width: 74%;
-	margin-left: 160px;
 }
 
+.btnfsave button:nth-child(1){
+	background-color: #3498db;
+	color: white;
+}
+.btnfsave button:nth-child(1):hover{
+	background-color: #2980b9;
+}
+.btnfsave button:nth-child(2){
+	background-color: #bdc3c7;
+}
+
+.btnfsave button:nth-child(2):hover{
+	background-color: #7f8c8d;
+}
 
 @media all and (max-width: 768px ) {
 	.header-area .logo-area{
@@ -319,16 +317,7 @@ body {
 	color: #3A5795;
 }
 
-.msg {
-    margin: 30px auto; 
-    padding: 10px; 
-    border-radius: 5px; 
-    color: #3c763d; 
-    background: #dff0d8; 
-    border: 1px solid #3c763d;
-    width: 50%;
-    text-align: center;
-}
+
 
 @media all and (max-width: 410px) {
 	.header-area form{

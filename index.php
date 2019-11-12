@@ -5,6 +5,9 @@
 	if(isset($_SESSION['fName'])){
 		header('location:home.php');
 	}
+	if(isset($_GET['forget'])){
+		header('location:forget.php');
+	}
  ?>
 <head>
 	<meta charset="UTF-8">
@@ -14,7 +17,14 @@
 </head>
 <body>
 <script src="js/registrationformValidation.js"></script>
-</head>
+<?php if (isset($_SESSION['message'])): ?>
+	<div class="msg">
+		<?php 
+			echo $_SESSION['message']; 
+			unset($_SESSION['message']);
+		?>
+	</div>
+<?php endif ?>
 	<header class="header-area">
 		<div class="container">	
 			<div class="logo-area">
@@ -31,7 +41,7 @@
 					<div class="password-area">
 						<label for="pass">Password</label>
 						<input type="password" name="log_pword" id="pass" />
-						<a href="#">Forgot your password?</a>
+						<a href="index.php?forget=true">Forgot your password?</a>
 					</div>
 					<div class="submit-area">
 						<input type="submit" name="btnlogin" value="Log In" />

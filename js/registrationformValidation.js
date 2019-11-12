@@ -55,7 +55,43 @@ var log_pword = document.forms["login"]["log_pword"].value;
 	return true;
 }
 
+function validpassword(){
+var password = document.forms["fnpass"]["npass"].value;
+var cpassword = document.forms["fnpass"]["cpass"].value;
+	if(password!=cpassword){
+		alert("Error: Confirm Password don't match");
+        return false;
+	}
+	if(password.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        return false;
+     }
+      re = /[0-9]/;
+      if(!re.test(password)) {
+        alert("Error: password must contain at least one number (0-9)!");
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(password)) {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        return false;
+      }
+      return true;
+}
+function redirect(){
+	window.location.assign("index.php");
+}
+
 function checkEmail(){
+	var mail=document.forms["searchfmail"]["mail"].value;
+	if(mail==''){
+		alert("You must fill in all of the fields.");
+		return false;
+	}
+	return true;
+
+}	
+
 /*	//get value of email address inputted by the user
 	var e_mail =  document.getElementById("email").value;
 	//get the position of at symbol
@@ -79,7 +115,6 @@ function checkEmail(){
 	    divemail.className = "form-group has-success";
 		
 	}*/
-}	
 function checkEmail2(){
         var email =  document.forms["register"]["email"].value;
         var divreemail = document.getElementById('divremail');

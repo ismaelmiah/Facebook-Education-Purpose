@@ -1,22 +1,30 @@
 <?php 
 	session_start();
-	include('include/database.php');
+	include('include/initialize.php');
+	$userid=$_SESSION['user_id'];
+	$pageid=1;
+	$image="";
 
 	if(isset($_GET['logout'])){
 		session_unset();
 		header('location: index.php');
 	}
+
+	if(isset($_GET['upload'])){
+		echo $_FILES['uploadimage'];
+	}
+
+	
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Welcome To Facebook</title>
-	<link rel="stylesheet" type="text/css" href="css/homestyle.css">
+	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<script src="https://kit.fontawesome.com/7d6d41d97c.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="js/functions.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -38,7 +46,7 @@
 							<img src="image/profile.jpg">
 						</div>
 						<div class="proname">
-							<a href="">
+							<a href="profile.php">
 								
 								<?php 
 									echo $_SESSION['fName'];
@@ -232,7 +240,7 @@
 		<div class="middle">
 			<div class="middleleft ">
 				<div class="scalemid">
-				<form method="post" action="post.php">
+				<form method="post" action="post.php" enctype="multipart/form-data">
 					<div class="statusbox">
 						<h1>Create Post</h1>
 						<i class="fas fa-user-circle"></i>
@@ -246,7 +254,11 @@
 								  		<i class="fas fa-image"></i>
 								  	</div>
 									<div class="fonttext">
-										<a style="color: black;font-weight: 600" href="#">Photo/Video</a>
+										
+<input id="upload" type="file" name="uploadimage" style="visibility: hidden; color: transparent;">
+<button style="color: black; font-weight: 600; border: none; background: none; cursor: pointer;"onclick="document.getElementById('upload').click(); return false;" 
+	>Photo/Video</button>
+										
 									</div>	
 							  </li>
 								<li>
@@ -277,8 +289,9 @@
 						</button>
 					</div>
 				</form>
+
 				<?php
-					$sql="SELECT * FROM post ORDER BY post_id DESC";
+					$sql="SELECT * FROM post where user_id = $userid ORDER BY post_id DESC";
 					$record=$conn->query($sql);
 					while($data = $record->fetch_assoc()){
 				 ?>
@@ -306,6 +319,14 @@
 											echo "".$data['post_content']."<br>";
 										 ?>
 									</p>
+									<?php 
+										$rec=$conn->query("SELECT * FROM photos WHERE post_id= ".$data['post_id']);		
+										if ($rec->num_rows > 0) {
+										    while($row = $rec->fetch_assoc()) {
+										    	echo "<div>";
+										        echo "<img src=".$row['type']." height=\"300\" width=\"465\"></div>";
+										    }
+									}?>
 									<hr>
 								</div>
 								<div class="postreact">
@@ -628,6 +649,8 @@ window.onclick = function(event) {
     }
   }
 }
+
+
 </script>
 
 </body>
