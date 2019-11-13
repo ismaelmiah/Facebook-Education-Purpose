@@ -2,24 +2,25 @@
 	session_start();
 	include('include/database.php');	
 	$userid=$_SESSION['user_id'];
-	$pageid=1;
-	$image="";
-	$prochnage=1;
+	$pageid=0;
 	if(isset($_GET['logout'])){
 		session_unset();
 		header('location: index.php');
 	}
+
 	if(isset($_POST['psave'])){
+		$userid=$_SESSION['user_id'];
 		$filename=rawurlencode($_FILES['uploadimage']['name']);
 		$tempname=$_FILES['uploadimage']['tmp_name'];
 		$size=$_FILES['uploadimage']['size'];
 		$folder="image/".$filename;
-		$pageid=1;
+		$pageid=0;
 		move_uploaded_file($tempname, $folder);
-		$imageinfo="Yes";
-		$sql = "INSERT INTO photos (filename,type,size,caption,user_id,page_id )VALUES ('$filename','$folder',$size,'profile',$userid,$pageid)";
-		$conn->query($sql);
-		$_SESSION['profilephoto']=$folder;
+		$sql = "UPDATE photos SET filename='$filename', type='$folder', size=$size, caption='profile', 
+		page_id=$pageid WHERE user_id=$userid";
+		if($conn->query($sql)==true){
+			header('location: profile.php');
+		}
 	}
 ?>
 
@@ -32,7 +33,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
 <div class="navbar">
 	<div class="scale">
 		<div class="left">
@@ -77,22 +77,37 @@
 		<div class="middle">
 
 			<div class="coverinfo">
-		<form method="POST" action="profile.php" name="proform">
+		<form method="POST" action="profile.php" name="proform" enctype="multipart/form-data">
 				<div class="leftcover">
 					<div class="camera">
 						<p ><i class="fas fa-camera"></i>Add Cover Photo</p>
 					</div>
 					<div class="profileimage">
+
+						<?php 
+
+
+							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
+								caption = 'profile'");		
+							if ($rec->num_rows > 0) {
+							    while($row = $rec->fetch_assoc()) {
+							        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+							        //echo "id missing- ".$row['photo_id']."that";
+							    }
+						} else{ ?>
 						<img src="image/game1.jpg">
+					<?php } ?>
 					</div>
+					<div class="profileup">
+						<i class="fas fa-camera" onclick="document.getElementById('upload').click(); return false;"></i>
+					</div>
+
+<input id="upload" type="file" name="uploadimage" style="visibility: hidden; color: transparent;">
 				</div>
 
 				<div class="rightcover">
 					<h2> <?php echo $_SESSION['fName']." ".$_SESSION['lName']; ?> </h2>
-
-					<a class="lock" href="profile.php?profileimage=true" onclick="document.getElementById('upload').click(); return false;">Change Profile Photo</a>
-					<button class="lock" name="psave" type="submit">Save Profile Photo</button>
-
+					<button name="psave" class="lock">Change Profile Photo</button>
 					<button class="update">Update Info</button>
 					<button class="activity"><i class="fas fa-list-ul"></i>Activity log</button>
 				</div>
@@ -227,9 +242,7 @@
 				<?php
 					$sql="SELECT * FROM post where user_id = $userid ORDER BY post_id DESC";
 					$record=$conn->query($sql);
-					$cnt=1;
 					while($data = $record->fetch_assoc()){
-					$cnt=0;
 				 ?>
 					<div class="posts">
 						<div class="newpost whitecolor">
@@ -255,6 +268,14 @@
 											echo "".$data['post_content']."<br>";
 										 ?>
 									</p>
+									<?php 
+										$rec=$conn->query("SELECT * FROM photos WHERE post_id= ".$data['post_id']);		
+										if ($rec->num_rows > 0) {
+										    while($row = $rec->fetch_assoc()) {
+										    	echo "<div>";
+										        echo "<img src=".$row['type']." height=\"300\" width=\"465\"></div>";
+										    }
+									}?>
 									<hr>
 								</div>
 								<div class="postreact">
