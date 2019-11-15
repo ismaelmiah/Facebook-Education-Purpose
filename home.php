@@ -656,13 +656,5 @@
 		</div>
 	</div>
 </div>
-
-<script>
-function allsettings() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-</script>
-
 </body>
 </html>

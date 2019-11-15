@@ -18,7 +18,7 @@
 		move_uploaded_file($tempname, $folder);
 		$sql = "UPDATE photos SET filename='$filename', type='$folder', size=$size, caption='profile', 
 		page_id=$pageid WHERE user_id=$userid";
-		if($conn->query($sql)==true){
+		if($conn->query($sql)===True){
 			header('location: profile.php');
 		}
 	}
@@ -44,6 +44,8 @@
 
 </head>
 <body>
+
+
 <div class="navbar">
 	<div class="scale">
 		<div class="left">
@@ -59,15 +61,14 @@
 				<ul>
 					<li style="padding-left: 5px; padding-bottom: 0px">
 						<div class="proimage">
-							
 						<?php 
 							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
 								caption = 'profile'");
 						    while($row = $rec->fetch_assoc()) {
 						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
-						        break;
 						    }
 						?>
+							
 						</div>
 						<div class="proname">
 							<a href="profile.php">
@@ -95,8 +96,8 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="allsettings">
+	
+	<div class="dropdown">
 	  <div id="myDropdown" class="dropdown-content">
 	    <a href="#home">Manage Groups</a>
 	    <hr>
@@ -110,6 +111,7 @@
 	  </div>
 	</div>
 </div>
+				
 
 <div class="bodylist">
 	<div class="middlescale">

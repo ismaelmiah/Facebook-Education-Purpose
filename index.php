@@ -5,9 +5,6 @@
 	if(isset($_SESSION['fName'])){
 		header('location:home.php');
 	}
-	if(isset($_GET['forget'])){
-		header('location:forget.php');
-	}
  ?>
 <head>
 	<meta charset="UTF-8">
@@ -41,7 +38,7 @@
 					<div class="password-area">
 						<label for="pass">Password</label>
 						<input type="password" name="log_pword" id="pass" />
-						<a href="index.php?forget=true">Forgot your password?</a>
+						<a href="forget.php">Forgot your password?</a>
 					</div>
 					<div class="submit-area">
 						<input type="submit" name="btnlogin" value="Log In" />

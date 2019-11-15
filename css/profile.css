@@ -1,4 +1,3 @@
-.show{display: block;}
 .dropdown-content {
   display: none;
   position: absolute;
@@ -16,18 +15,22 @@
 	padding:0px;
 	border-bottom: 1px solid #E9EBEE; 
 }
-
-.navbar .dropdown-content a {
+.dropdown-content a {
   color: black;
   padding: 5px 16px;
   font-size: 12px;
   text-decoration: none;
   display: block;
 }
+.navbar .dropdown a{
+	color: black;
+}
 .dropdown-content a:hover {
   background-color:  #4267B2;
   color: white;
 }
+
+.show {display: block;}
 
 body{
 	margin: 0;

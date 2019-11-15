@@ -1,7 +1,7 @@
 
 <?php
 include('include/database.php');
-
+session_start();
 $f_name = $_POST['fname'];
 $l_name = $_POST['sname'];
 $email = $_POST['email'];
@@ -25,15 +25,13 @@ echo "<script type=\"text/javascript\">
 	window.location=\"index.php\";
 </script>";
 }
-else{
-
-}
 if ($conn->query($sql)) {
-    
-    echo "<script type=\"text/javascript\">
-                alert(\"$f_name $l_name your account created Successfully.\");
-                window.location = \"index.php\"
-            </script>";
+	$last_id = $conn->insert_id;
+ 	$_SESSION['user_id'] = $last_id;
+	$_SESSION['fName'] = $f_name;
+	$_SESSION['lName'] = $l_name;
+	$_SESSION['email'] = $email;
+    header('location: newprofile.php');
     
 } else{
     die("Failed: " . mysql_error());

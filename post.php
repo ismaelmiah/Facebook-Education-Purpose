@@ -10,19 +10,16 @@ include('include/initialize.php');
 		$tempname=$_FILES['uploadimage']['tmp_name'];
 		$size=$_FILES['uploadimage']['size'];
 		$folder="image/".$filename;
-		//echo $postmessage."<br>".$pageid."<br>".$date."<br>".$filename."<br>".$tempname."<br>".$size."<br>".$folder;
 		$sql = "INSERT INTO post (user_id,post_content, post_date, page_id)	VALUES ($userid, '$postmessage', '$date', $pageid)";
 		if ($conn->query($sql) === TRUE) {
 			$postid=$conn->insert_id;
 		}
 		if($size>0){
 			move_uploaded_file($tempname, $folder);
-			$imageinfo="Yes";
 			$sql = "INSERT INTO photos (filename,type,size,user_id,page_id, post_id)VALUES ('$filename','$folder',$size,$userid,$pageid, $postid)";
 			$conn->query($sql);
 		}
 		if($pageid==0){
-			//echo $postmessage."<br>".$pageid."<br>".$date."<br>".$filename."<br>".$tempname."<br>".$size."<br>".$folder;
 			header('location: profile.php');
 		}
 		else if($pageid==1){

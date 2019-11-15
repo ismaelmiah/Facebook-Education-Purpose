@@ -1,0 +1,199 @@
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  margin-left: 900px;
+  margin-top: 1px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content hr{
+	border: none;
+	margin:0px;
+	padding:0px;
+	border-bottom: 1px solid #E9EBEE; 
+}
+.dropdown-content a {
+  color: black;
+  padding: 5px 16px;
+  font-size: 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color:  #4267B2;
+  color: white;
+}
+
+.show {display: block;}
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+.scale{
+	margin-left: 5%;
+	margin-right: 17%;	
+}
+.navbar{
+	height: 45px;
+	background-color: #4267B2;
+	width: 100%;
+	top:0;
+	position: fixed;
+}
+
+.left{
+	width: 45%;
+	float: left;
+}
+
+.right{
+	width: 55%;
+	overflow: hidden;
+}
+
+.logo{
+	color: white;
+	font-size: 0.5rem;
+	float: left;
+}
+.logo a{
+	color: white;
+}
+.fa-facebook-square{
+	margin-top: 5px;
+
+}
+.searchbar{
+	overflow: hidden;
+}
+.searchbar input{
+	padding: 4px;
+	line-height: 12px;
+	width: 100%;
+	margin-left: 10px;
+	margin-top: 8px;
+}
+
+.navmenu{
+	float: left;
+	color: white;
+	margin-top: -5px;
+	margin-left: 10px;
+}
+
+.navmenu a{
+	color: white;
+	text-decoration: none;
+}
+
+.navmenu ul, li{
+	list-style: none;
+}
+.navmenu ul li{
+	float: left;
+	padding:6px 13px;
+    margin: 0 0 8px 0;
+}
+.navmenu ul li:hover{
+	background-color: #3B5CA0;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.proimage{
+	float: left;
+	margin-top: 5px;
+}
+.proname{
+	overflow: hidden;
+}
+.proimage img{
+	border-radius: 50%;
+	height: 22px;
+	width: 22px;
+	margin-right: 5px;
+	margin-top:-8px;
+	margin-left: 5px;
+}
+
+.fabmenu{
+	overflow: hidden;
+	color: #1A2947;
+}
+.fabmenu ul{
+    margin-top: 13px;
+    padding: 0px;
+}
+.fabmenu li{
+	float: left;
+	padding: 0px 7px;
+}
+.fabmenu li:hover{
+	color: black;
+	cursor: pointer;
+}
+.allfbox{
+	margin: 110px 400px;
+	border: 1px solid #CCCCCC;
+	border-radius:3px;
+	background-color: white;
+}
+.forgetbox hr{
+	border: none;
+	border-bottom: 1px solid #CCCCCC;
+	padding:0px;
+	margin-bottom: 0px;
+	width: 90%;
+}
+.forgetbox h1{
+	padding: 0px;
+	margin: 0px;
+	font-size: 20px;
+	padding:14px 20px 10px 20px;
+}
+.proinfo{
+	padding: 20px 170px;
+}
+.proinfo img{
+	width: 200px;
+	height: 200px;
+	border: 5px solid orange;
+	border-radius: 50%;
+}
+
+.proinfo input{
+	margin-top:20px;
+}
+
+.btnfsearch{
+	text-align: right;
+	background-color: #F2F2F2;
+	padding: 10px 10px;
+	border:none;
+	border-top: 1px solid #CCC;
+}
+
+.btnfsearch button{
+	padding: 5px;
+	border:1px solid #CCC;
+}
+.btnfsearch button:hover{
+	cursor: pointer;
+}
+.btnfsearch button:nth-child(1){
+	background-color: #4267B2;
+	color: white;
+}
+.btnfsearch button:nth-child(1):hover{
+	background-color: #3B5998;
+	color: white;
+}
+.btnfsearch button:nth-child(2){
+	background-color: #FFF;
+}
+.btnfsearch button:nth-child(2):hover{
+	background-color: #CCC;
+}
