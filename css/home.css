@@ -577,6 +577,15 @@ textarea::-webkit-input-placeholder {
 	overflow: hidden;
 	text-align: right;
 }
+.postoption i{
+	font-size: 15px;
+}
+.postoption a{
+	color: gray;
+}
+.postoption i:hover{
+	color: black;
+}
 .post-contents{
 	padding: 5px 0px;
 	text-align: justify;

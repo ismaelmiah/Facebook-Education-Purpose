@@ -2,18 +2,16 @@
 	session_start();
 	include('include/initialize.php');
 	$userid=$_SESSION['user_id'];
-	$pageid=1;
-	$image="";
-
 	if(isset($_GET['logout'])){
 		session_unset();
 		header('location: index.php');
 	}
-
-	if(isset($_GET['upload'])){
-		echo $_FILES['uploadimage'];
+	if(isset($_GET['del'])){
+		$id=$_GET['del'];
+		$sql="DELETE FROM post where post_id=$id";
+		$conn->query($sql);
+		header('location:home.php');
 	}
-
 	
 ?>
 <!DOCTYPE html>
@@ -43,7 +41,14 @@
 				<ul>
 					<li style="padding-left: 5px; padding-bottom: 0px">
 						<div class="proimage">
-							<img src="image/profile.jpg">
+						<?php 
+							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
+								caption = 'profile'");
+						    while($row = $rec->fetch_assoc()) {
+						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+						    }
+						?>
+							
 						</div>
 						<div class="proname">
 							<a href="profile.php">
@@ -94,7 +99,14 @@
 			<ul>
 			  <li class="profileli huber">
 			  	<div class="proimage">
-					<img src="image/profile.jpg">
+					
+						<?php 
+							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
+								caption = 'profile'");
+						    while($row = $rec->fetch_assoc()) {
+						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+						    }
+						?>
 				</div>
 				<div class="proname">
 					<a style="color: black;" href="">
@@ -279,11 +291,12 @@
 							  </li>
 								<li>
 								  	<div class="fontawsome">
-								  		<a href="#"><i class="fas fa-ellipsis-h"></i></a>
+								  		<a href="#"><i style="background: none;" class="fas fa-ellipsis-h"></i></a>
 								  	</div>
 							  </li>
 						</ul>
 						</div>
+						<input type="hidden" name="page" value="1" >
 						<button class="btnpost" name="postbtn">
 							POST
 						</button>
@@ -300,7 +313,15 @@
 								<div class="posttitlesinfo">
 									<div class="userinfos">
 										<div class="usrimg">
-											<img src="image/profile.jpg">
+												
+						<?php 
+							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
+								caption = 'profile'");
+						    while($row = $rec->fetch_assoc()) {
+						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+						        break;
+						    }
+						?>
 										</div>
 										<div class="usrname">
 											<h1>
@@ -310,7 +331,10 @@
 										</div>
 									</div>
 									<div class="postoption">
-										<a href="#"><i class="fas fa-ellipsis-h"></i></a>
+										<a href="#"><i class="fas fa-edit"></i></a>
+										<a href="#"><i class="fas fa-bookmark"></i></a>
+										<a href="home.php?del=<?php echo $data['post_id']; ?>"><i class="fas fa-trash-alt"></i></a>
+										<a href="#"><i class="fas fa-share"></i></a>
 									</div>
 								</div>
 								<div class="post-contents">
@@ -637,19 +661,6 @@
 function allsettings() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-
 
 </script>
 

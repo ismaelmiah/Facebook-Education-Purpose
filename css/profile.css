@@ -1,3 +1,34 @@
+.show{display: block;}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  margin-left: 900px;
+  margin-top: 1px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content hr{
+	border: none;
+	margin:0px;
+	padding:0px;
+	border-bottom: 1px solid #E9EBEE; 
+}
+
+.navbar .dropdown-content a {
+  color: black;
+  padding: 5px 16px;
+  font-size: 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color:  #4267B2;
+  color: white;
+}
+
 body{
 	margin: 0;
 	padding: 0;
@@ -102,6 +133,105 @@ body{
 .fabmenu li:hover{
 	color: black;
 	cursor: pointer;
+}
+
+.statusbox h1{
+	font-size: 13px;
+	color: #4B4F7A; 
+	background-color: #F5F6F7;
+	padding: 10px;
+	margin: 0px;
+	border-bottom: 1px solid #D2D5DA;
+
+}
+.statusbox{
+	border-radius: 3px;
+	border: 1px solid #D2D5DA;
+	overflow: hidden;
+	background-color: #FFF;
+}
+
+.statusbox textarea{
+	border: none;
+	width: 421px;
+	height: 72px;
+	resize: none;
+	outline: none;
+}
+
+.statusbox i{
+	color: #D2D5DA;
+	font-size: 2.5rem;
+	float: left;
+	background-color: #FFF;
+	padding: 19px 15px;
+}
+
+textarea::-webkit-input-placeholder {
+  padding: 10px 0px;
+  padding-top: 14px;
+  font-size: 16px;
+  color: #D2D5DA;
+}
+
+.statusbox hr{
+	width: 90%;
+  	height: 1px;
+    border: 0;
+    border-top: 1px solid #F5F6F7;
+    padding: 0px;
+    margin: 0px;
+ }
+
+.statusbox ul{
+	margin: 0px;
+	padding: 0px;
+	display: block;
+}
+#upload_link{
+    text-decoration:none;
+}
+#upload{
+    display:none
+}
+.btnpost{
+    padding: 8px 225px;
+    background-color: #4267B2;
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    border: none;
+}
+
+.btnpost:hover{
+	cursor: pointer;
+	color: #4267B2;
+	background-color: white;
+}
+
+
+.statusbox ul li{
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	float: left;
+	background-color: #F5F6F7;
+	border-radius: 500px;
+}
+.statusbox ul li:hover{
+	cursor: pointer;
+	background-color: #EBEDF0;
+}
+
+.statusbox ul li i{
+	color: green;
+	padding: 0px;
+	margin: 0px;;
+	font-size: 1rem;
+}
+.statusbox .fonttext{
+	margin-left:20px;
+	margin-top:1px;
 }
 .bodylist{
 	margin-top: 60px;
@@ -413,8 +543,8 @@ body{
 
 
 .otherleft{
-	width: 38%;
-	margin-right: 15px;
+	width: 40%;
+	margin-right: 16px;
 	float: left;
 }
 
@@ -466,7 +596,7 @@ body{
 }
 
 .editdetails button{
-	padding: 7px 118px;
+	padding: 7px 127px;
 	border: 1px solid #E9EBEE;
 	cursor: pointer;
 	background-color: #f5f6f7;
@@ -591,9 +721,6 @@ body{
 	text-decoration: none;
 	padding: 5px;
 }
-.postinfo{
-	margin-top: -15px;
-}
 .newpost{
 	margin-top: 15px;
 	padding: 15px 15px 0px 15px;
@@ -632,6 +759,15 @@ body{
 	margin-bottom: 28px;
 	overflow: hidden;
 	text-align: right;
+}
+.postoption span{
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	background-color: none;
+}
+.postoption span:hover{
+	cursor: pointer;
 }
 .post-contents{
 	padding: 5px 0px;
@@ -724,4 +860,14 @@ body{
 .postreact a{
 	color: gray;
 	font-size: 15px;
+}
+
+.postoption i{
+	font-size: 15px;
+}
+.postoption a{
+	color: gray;
+}
+.postoption i:hover{
+	color: black;
 }

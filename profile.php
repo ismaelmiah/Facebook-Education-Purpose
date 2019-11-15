@@ -10,9 +10,9 @@
 
 	if(isset($_POST['psave'])){
 		$userid=$_SESSION['user_id'];
-		$filename=rawurlencode($_FILES['uploadimage']['name']);
-		$tempname=$_FILES['uploadimage']['tmp_name'];
-		$size=$_FILES['uploadimage']['size'];
+		$filename=rawurlencode($_FILES['uploadproimage']['name']);
+		$tempname=$_FILES['uploadproimage']['tmp_name'];
+		$size=$_FILES['uploadproimage']['size'];
 		$folder="image/".$filename;
 		$pageid=0;
 		move_uploaded_file($tempname, $folder);
@@ -21,6 +21,13 @@
 		if($conn->query($sql)==true){
 			header('location: profile.php');
 		}
+	}
+
+	if(isset($_GET['del'])){
+		$id=$_GET['del'];
+		$sql="DELETE FROM post where post_id=$id";
+		$conn->query($sql);
+		header('location:profile.php');
 	}
 ?>
 
@@ -31,6 +38,10 @@
 	<link rel="stylesheet" type="text/css" href="css/profile.css">
 	<script src="https://kit.fontawesome.com/7d6d41d97c.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
 </head>
 <body>
 <div class="navbar">
@@ -48,10 +59,24 @@
 				<ul>
 					<li style="padding-left: 5px; padding-bottom: 0px">
 						<div class="proimage">
-							<img src="<?php echo $_SESSION['profilephoto']; ?>">
+							
+						<?php 
+							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
+								caption = 'profile'");
+						    while($row = $rec->fetch_assoc()) {
+						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+						        break;
+						    }
+						?>
 						</div>
 						<div class="proname">
-							<a href="">Profile</a>
+							<a href="profile.php">
+								
+								<?php 
+									echo $_SESSION['fName'];
+								 ?>
+
+							</a>
 						</div>
 					</li>
 					<li><a href="home.php">Home</a></li>
@@ -65,10 +90,24 @@
 					<li><i class="fab fa-facebook-messenger fa-3x"></i></li>
 					<li><i class="fas fa-bell fa-3x"></i></li>
 					<li><i class="fas fa-question-circle fa-3x"></i></li>
-					<li><i class="fas fa-caret-down fa-3x"></i></li>
+					<li><i onclick="allsettings()" class=" dropbtn fas fa-caret-down fa-3x"></i></li>
 				</ul>
 			</div>
 		</div>
+	</div>
+
+	<div class="allsettings">
+	  <div id="myDropdown" class="dropdown-content">
+	    <a href="#home">Manage Groups</a>
+	    <hr>
+	    <a href="#about">Advertising on Facebook</a>
+	    <hr>
+	    <a href="#contact">Activity Log</a>
+	    <a href="#contact">News Feed preferences</a>
+	    <a href="#contact">Settings</a>
+	    <hr>
+	    <a href ="home.php?logout=true">Logout</a>
+	  </div>
 	</div>
 </div>
 
@@ -83,26 +122,19 @@
 						<p ><i class="fas fa-camera"></i>Add Cover Photo</p>
 					</div>
 					<div class="profileimage">
-
 						<?php 
-
-
 							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
-								caption = 'profile'");		
-							if ($rec->num_rows > 0) {
-							    while($row = $rec->fetch_assoc()) {
-							        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
-							        //echo "id missing- ".$row['photo_id']."that";
-							    }
-						} else{ ?>
-						<img src="image/game1.jpg">
-					<?php } ?>
+								caption = 'profile'");
+						    while($row = $rec->fetch_assoc()) {
+						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+						        break;
+						    }
+						?>
 					</div>
 					<div class="profileup">
-						<i class="fas fa-camera" onclick="document.getElementById('upload').click(); return false;"></i>
+						<i class="fas fa-camera" onclick="document.getElementById('upprofile').click(); return false;"></i>
 					</div>
-
-<input id="upload" type="file" name="uploadimage" style="visibility: hidden; color: transparent;">
+					<input id="upprofile" type="file" name="uploadproimage" style="visibility: hidden;">
 				</div>
 
 				<div class="rightcover">
@@ -234,9 +266,61 @@
 					<span style="padding: 5px; margin-top: 5px; color: gray;">Facebook © 2019</span>
 				</div>
 			</div>
+			</div>
 
-				</div>
 				<div class="otherright">
+
+				<form method="post" action="post.php" enctype="multipart/form-data">
+					<div class="statusbox">
+						<h1>Create Post</h1>
+						<i class="fas fa-user-circle"></i>
+						<textarea placeholder="What's On Your Mind?
+						" name="postmessage"></textarea>
+						<hr>
+						<div class="extrapost">
+							<ul>
+								<li>
+								  	<div class="fontawsome">
+								  		<i class="fas fa-image"></i>
+								  	</div>
+									<div class="fonttext">
+										
+<input id="upload" type="file" name="uploadimage" style="visibility: hidden; color: transparent;">
+<button style="color: black; font-weight: 600; border: none; background: none; cursor: pointer;"onclick="document.getElementById('upload').click(); return false;" 
+	>Photo/Video</button>
+										
+									</div>	
+							  </li>
+								<li>
+								  	<div class="fontawsome">
+								  		<i  style="color: blue;" class="fas fa-user-tag"></i>
+								  	</div>
+									<div class="fonttext">
+										<a style="color: black;font-weight: 600" href="#">Tags friends</a>
+									</div>	
+							  </li>
+								<li>
+								  	<div class="fontawsome">
+								  		<i style="color: orange;" class="fas fa-laugh"></i>
+								  	</div>
+									<div class="fonttext">
+										<a style="color: black;font-weight: 600" href="#">Feelings/Act.</a>
+									</div>	
+							  </li>
+								<li>
+								  	<div class="fontawsome">
+								  		<a href="#"><i style="background: none;" class="fas fa-ellipsis-h"></i></a>
+								  	</div>
+							  </li>
+						</ul>
+						</div>
+						<input type="hidden" name="page" value="0" >
+						<button class="btnpost" name="postbtn">
+							POST
+						</button>
+					</div>
+				</form>
+
 					<div class="postinfo">
 					
 				<?php
@@ -249,7 +333,15 @@
 								<div class="posttitlesinfo">
 									<div class="userinfos">
 										<div class="usrimg">
-											<img src="image/profile.jpg">
+												
+						<?php 
+							$rec=$conn->query("SELECT * FROM photos WHERE user_id = ".$_SESSION['user_id']." AND 
+								caption = 'profile'");
+						    while($row = $rec->fetch_assoc()) {
+						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+						        break;
+						    }
+						?>
 										</div>
 										<div class="usrname">
 											<h1>
@@ -259,7 +351,11 @@
 										</div>
 									</div>
 									<div class="postoption">
-										<a href="#"><i class="fas fa-ellipsis-h"></i></a>
+										<a href="#"><i class="fas fa-edit"></i></a>
+										<a href="#"><i class="fas fa-bookmark"></i></a>
+										<a href="profile.php?del=<?php echo $data['post_id']; ?>"><i class="fas fa-trash-alt"></i></a>
+										<a href="#"><i class="fas fa-share"></i></a>
+								
 									</div>
 								</div>
 								<div class="post-contents">
@@ -301,11 +397,15 @@
 							</div>
 						</div>
 					</div>
+	
 				<?php } ?>
+
+  
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<div class="rightsidebar">
 			<div class="chattinglist">
 					<div class="ads">
@@ -469,6 +569,13 @@
 	</div>
 </div>
 
-					<input id="upload" type="file" name="uploadimage" style="visibility: hidden;">
+										
+<script>
+function allsettings() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+</script>
+
+
 </body>
 </html>
