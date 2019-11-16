@@ -1,6 +1,6 @@
 <?php 
 	include('include/initialize.php');
-		session_start();
+	session_start();
 	if(isset($_POST['ppsave'])){
 		$filename=rawurlencode($_FILES['profileimg']['name']);
 		$tempname=$_FILES['profileimg']['tmp_name'];
@@ -16,6 +16,14 @@
 	}
 
 	if(isset($_POST['skip'])){
+		$userid=$_SESSION['user_id'];
+		$filename="empty.jpg";
+		$size=2739;
+		$folder="image/empty.jpg";
+		$pageid=0;
+		$sql = "INSERT INTO photos (filename,type,size,caption,user_id,page_id)VALUES 
+		('$filename','$folder',$size,'profile',$size,$pageid)";
+		$conn->query($sql);
 		header('location: home.php');
 	}
  ?>

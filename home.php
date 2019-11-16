@@ -46,6 +46,7 @@
 								caption = 'profile'");
 						    while($row = $rec->fetch_assoc()) {
 						        echo "<img src=".$row['type']." height=\"150\" width=\"150\">";
+						        break;
 						    }
 						?>
 							
