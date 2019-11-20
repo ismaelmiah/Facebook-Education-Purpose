@@ -634,7 +634,6 @@ textarea::-webkit-input-placeholder {
 
 .commentsinfo{
 	padding: 15px;
-	margin-top: 15px;
 }
 
 .commentsinfo img{
@@ -678,6 +677,7 @@ textarea::-webkit-input-placeholder {
 .postreact a{
 	color: gray;
 	font-size: 15px;
+<<<<<<< HEAD
 }
 
 #cmtshow{
@@ -703,3 +703,6 @@ textarea::-webkit-input-placeholder {
 	font-weight: normal;
 	margin-left: 5px;
 }
+=======
+}
+>>>>>>> parent of f592171... [Comment Saved into DB]
