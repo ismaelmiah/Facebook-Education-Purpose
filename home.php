@@ -22,8 +22,9 @@
 	<script src="https://kit.fontawesome.com/7d6d41d97c.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="js/functions.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/jquery-3.4.1.min.js"></script>
 </head>
+
 <body>
 
 <div class="navbar">
@@ -309,7 +310,7 @@
 					$record=$conn->query($sql);
 					while($data = $record->fetch_assoc()){
 				 ?>
-					<div class="posts">
+					<div class="posts whitecolor">
 						<div class="newpost whitecolor">
 								<div class="posttitlesinfo">
 									<div class="userinfos">
@@ -339,6 +340,7 @@
 									</div>
 								</div>
 								<div class="post-contents">
+									<input type="hidden" id="postid" name="postid" value="<?php echo $data['post_id'] ?>">
 									<p>
 										<?php 
 											echo "".$data['post_content']."<br>";
@@ -346,6 +348,7 @@
 									</p>
 									<?php 
 										$rec=$conn->query("SELECT * FROM photos WHERE post_id= ".$data['post_id']);		
+
 										if ($rec->num_rows > 0) {
 										    while($row = $rec->fetch_assoc()) {
 										    	echo "<div>";
@@ -354,6 +357,7 @@
 									}?>
 									<hr>
 								</div>
+								
 								<div class="postreact">
 									<div class="like">
 										<i class="far fa-thumbs-up"></i>
@@ -365,9 +369,37 @@
 									</div>
 								</div>
 							</div>
-						<div class="commentsinfo whitecolor">
-							<img src="image/profile.jpg">
-							<input type="text" name="comment" placeholder="Write a comment...">
+					<div class="commentsinfo">
+						<img src="image/empty.jpg">
+						<div class="comment-box">
+							<p>
+								Shahriar Aziz Akash
+							<span>
+							PhD kora Dr. pod pawa manush keo SSC pass er moto kore porate dekhechi
+							</span>
+							</p>
+						</div>
+						<div class="commentoption">
+							<i class="fas fa-ellipsis-h"></i>
+						</div>
+					</div>
+					<div class="commentsinfo">
+						<img src="image/empty.jpg">
+						<div class="comment-box">
+							<p>
+								Shahriar Aziz Akash
+							<span>
+							PhD kora Dr. pod pawa manush keo SSC pass er moto kore porate dekhechi
+							</span>
+							</p>
+						</div>
+						<div class="commentoption">
+							<i class="fas fa-ellipsis-h"></i>
+						</div>
+					</div>
+						<div class="commentsinfo">
+							<img src="image/empty.jpg">
+							<input type="text"  id="comment" name="comment" placeholder="Write a comment..."  onkeydown = "if (event.keyCode == 13)document.getElementById('mycmtbtn').click()" >
 							<input style="margin-left: -20px;width: 100px;border-left: none;background-color: white; " type="text" name="" disabled>
 							<div class="blox">
 								<i class="fab fa-sticker-mule"></i>
@@ -376,6 +408,7 @@
 								<i class="far fa-smile"></i>
 							</div>
 						</div>
+						<button type="submit" id="mycmtbtn" style="visibility:hidden">Button</button>
 					</div>
 				<?php } ?>
 				</div>
@@ -659,3 +692,28 @@
 </div>
 </body>
 </html>
+
+<script>
+$(document).ready(function(){
+	$("#mycmtbtn").click(function(){
+			var name="noName";
+			var comment=$("#comment").val();
+			var postid=$('#postid').val();
+
+			$.ajax({
+				url: "ajax.php",
+				type: "POST",
+				async: false,
+				data: {
+					"done": 1,
+					"username": name,
+					"comment_text": comment,
+					"post_id": postid
+				},
+				success: function(data){
+					$("#comment").val('');
+				}
+			})
+		});
+});
+</script>
