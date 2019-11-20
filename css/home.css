@@ -680,7 +680,12 @@ textarea::-webkit-input-placeholder {
 	font-size: 15px;
 }
 
-.comment-box p{
+#cmtshow{
+	width: 80%;
+	margin: 10px auto;;
+}
+
+#cmtuser{
 	margin-left: 10px;
 	margin-right: 0px;
 	margin-bottom: 0px;
@@ -694,11 +699,7 @@ textarea::-webkit-input-placeholder {
 	width: 80%;
 }
 
-.comment-box span{
+#cmt{
 	font-weight: normal;
 	margin-left: 5px;
-}
-
-.commentoption{
-	text-align: right;
 }

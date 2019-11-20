@@ -369,34 +369,22 @@
 									</div>
 								</div>
 							</div>
-					<div class="commentsinfo">
-						<img src="image/empty.jpg">
-						<div class="comment-box">
-							<p>
-								Shahriar Aziz Akash
-							<span>
-							PhD kora Dr. pod pawa manush keo SSC pass er moto kore porate dekhechi
-							</span>
-							</p>
+					
+					
+						<div class="commentsinfo">
+							<img src="image/empty.jpg" alt="commentuser">
+							<div id="comment-box">
+								<p id="cmtuser">
+									Shahriar Aziz Akash
+								<span id="cmt">
+								It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English
+								</span>
+								</p>
+							</div>	
 						</div>
-						<div class="commentoption">
-							<i class="fas fa-ellipsis-h"></i>
+						<div id="cmtshow" class="commentsinfo">
+								
 						</div>
-					</div>
-					<div class="commentsinfo">
-						<img src="image/empty.jpg">
-						<div class="comment-box">
-							<p>
-								Shahriar Aziz Akash
-							<span>
-							PhD kora Dr. pod pawa manush keo SSC pass er moto kore porate dekhechi
-							</span>
-							</p>
-						</div>
-						<div class="commentoption">
-							<i class="fas fa-ellipsis-h"></i>
-						</div>
-					</div>
 						<div class="commentsinfo">
 							<img src="image/empty.jpg">
 							<input type="text"  id="comment" name="comment" placeholder="Write a comment..."  onkeydown = "if (event.keyCode == 13)document.getElementById('mycmtbtn').click()" >
@@ -711,9 +699,27 @@ $(document).ready(function(){
 					"post_id": postid
 				},
 				success: function(data){
+					displaycomment();
 					$("#comment").val('');
 				}
 			})
 		});
 });
+
+
+function displaycomment(){
+	var postid=$('#postid').val();
+	$.ajax({
+		url: "ajax.php",
+		type: "POST",
+		async: false,
+		data: {
+			"displaycomment": 1,
+			"post_id": postid
+		},
+		success: function(d){
+			$("#cmtshow").html(d);
+		}
+	});
+}
 </script>
